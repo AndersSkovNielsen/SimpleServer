@@ -19,7 +19,14 @@ namespace SimpleServer
             TcpListener serverListener = new TcpListener(IPAddress.Loopback, pORT);
             serverListener.Start();
 
-            using (TcpClient socket = serverListener.AcceptTcpClient())
+            DoClient(/*TcpClient socket =*/ serverListener.AcceptTcpClient());
+        }
+
+        public void DoClient(TcpClient socket /*= serverListener.AcceptTcpClient*/)
+        {
+            //using (TcpClient socket = serverListener.AcceptTcpClient())
+            //Unødvendig da denne nu ligger i metodens parameter
+
             using (StreamReader sr = new StreamReader(socket.GetStream()))
             using (StreamWriter sw = new StreamWriter(socket.GetStream()))
 
