@@ -15,7 +15,7 @@ namespace EchoClient2
 
         public void Start()
         {
-            using (TcpClient socket = new TcpClient("localhost", 77))
+            using (TcpClient socket = new TcpClient("localhost", 7))
                 
             using (NetworkStream ns = socket.GetStream())
 

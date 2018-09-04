@@ -8,6 +8,8 @@ namespace EchoClient2
         {
             Client client = new Client();
             client.Start();
+
+            Console.ReadLine();
         }
     }
 }
