@@ -38,7 +38,19 @@ namespace SimpleServer
                 sw.WriteLine(incomingString);
                 sw.Flush();
 
+                CountWords(incomingString, sw);
+
             } // using slut = close forbindelse til socket / client
+        }
+
+        public void CountWords(string incomingString, StreamWriter sw)
+        {
+            int count = 0;
+
+            var strings = incomingString.Split(" ");
+
+            sw.WriteLine(strings.Length);
+            sw.Flush();
         }
     }
 }

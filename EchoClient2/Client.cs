@@ -23,12 +23,13 @@ namespace EchoClient2
             using (StreamWriter sw = new StreamWriter(ns))
 
             {
-                sw.WriteLine("Anders");
+                sw.WriteLine("Anders er en test og nu laver vi en ny test");
                 sw.Flush();
 
                 String line = sr.ReadLine();
 
                 Console.WriteLine(line);
+                Console.WriteLine("Antal ord: " + sr.ReadLine());
             } // using slut = close forbindelse til socket / client
         }
     }
