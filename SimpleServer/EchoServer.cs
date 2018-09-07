@@ -2,6 +2,8 @@
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SimpleServer
 {
@@ -18,10 +20,14 @@ namespace SimpleServer
         {
             TcpListener serverListener = new TcpListener(IPAddress.Loopback, pORT);
             serverListener.Start();
-
+            
+            //while (true) bruges til at kunne håndtere flere klienter
             while (true)
             {
-                DoClient(/*TcpClient socket =*/ serverListener.AcceptTcpClient());
+                //Refaktorering så flere klienter kan håndteres samtidig
+                TcpClient socket = serverListener.AcceptTcpClient();
+                Task.Run(() => { TcpClient tempSocket = socket; DoClient(tempSocket); });
+                //DoClient(/*TcpClient socket =*/ serverListener.AcceptTcpClient());
             }
         }
 
@@ -35,6 +41,8 @@ namespace SimpleServer
 
             {
                 String incomingString = sr.ReadLine();
+
+                Thread.Sleep(5000);
 
                 Console.WriteLine($"String in = {incomingString}");
 
