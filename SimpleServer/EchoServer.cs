@@ -19,7 +19,10 @@ namespace SimpleServer
             TcpListener serverListener = new TcpListener(IPAddress.Loopback, pORT);
             serverListener.Start();
 
-            DoClient(/*TcpClient socket =*/ serverListener.AcceptTcpClient());
+            while (true)
+            {
+                DoClient(/*TcpClient socket =*/ serverListener.AcceptTcpClient());
+            }
         }
 
         public void DoClient(TcpClient socket /*= serverListener.AcceptTcpClient*/)
